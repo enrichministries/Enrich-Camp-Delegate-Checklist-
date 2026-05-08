@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrich Worship Camp 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            card: 'rgba(20, 20, 25, 0.7)',
+                            accent1: '#8B5CF6', // Purple
+                            accent2: '#3B82F6', // Blue
+                            accent3: '#14B8A6', // Teal
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Subtle grid background */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Animation classes for JS observer */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased bg-grid relative">
+
+    <!-- Ambient Background Glows -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-accent1/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-brand-accent2/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-brand-accent3/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                        EWC<span class="text-brand-accent1">26</span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="#checklist" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Checklist</a>
+                        <a href="#tracks" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Tracks</a>
+                        <a href="#teachers" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Teachers</a>
+                        <a href="#venue" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Venue</a>
+                        <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-sm font-medium backdrop-blur-sm transition-all border border-white/10">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full glass border border-white/10 text-sm font-medium text-brand-accent1 tracking-wide uppercase animate-fade-in-up">
+                Equipping the next generation
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.1s;">
+                Enrich <br/>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-accent1 via-brand-accent2 to-brand-accent3">
+                    Worship Camp
+                </span> 
+                2026
+            </h1>
+            <p class="mt-4 text-lg md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10 font-light animate-fade-in-up" style="animation-delay: 0.2s;">
+                A time to encounter His presence, pursue excellence in our craft, and unite as a community of worshippers.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.3s;">
+                <a href="#checklist" class="px-8 py-4 rounded-full bg-white text-black font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                    View Checklist
+                </a>
+                <a href="#venue" class="px-8 py-4 rounded-full glass font-bold text-lg hover:bg-white/10 transition-colors border border-white/20">
+                    Find Venue
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section id="about" class="py-24 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 text-center reveal">
+            <svg class="w-12 h-12 mx-auto mb-6 text-brand-accent1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path></svg>
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">Welcome to the Journey</h2>
+            <p class="text-xl text-gray-400 leading-relaxed font-light">
+                Get ready for a transformative time. This camp isn't just about playing notes; it's about preparing our hearts. It's a dedicated space for worship, intensive learning, pursuing musical excellence, and experiencing deep spiritual growth. Come expectant, ready to be equipped for His glory.
+            </p>
+        </div>
+    </section>
+
+    <!-- General Checklist -->
+    <section id="checklist" class="py-24 bg-black/50 relative z-10 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">General Essentials</h2>
+                <p class="text-gray-400">Everything you need to pack for a comfortable and focused camp experience.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+                <!-- Checklist Items Generated from Prompt -->
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-brand-accent1/20 p-3 rounded-xl text-brand-accent1"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg></div>
+                    <span class="font-medium">Bible, Long Notebook & Pens</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-brand-accent2/20 p-3 rounded-xl text-brand-accent2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg></div>
+                    <span class="font-medium">Musical Instrument / Drumsticks</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-brand-accent3/20 p-3 rounded-xl text-brand-accent3"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg></div>
+                    <span class="font-medium">Clothing, Towel, Bedsheet & Pillow Cover</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-yellow-500/20 p-3 rounded-xl text-yellow-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+                    <span class="font-medium">Charger & Extension Box</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-blue-400/20 p-3 rounded-xl text-blue-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg></div>
+                    <span class="font-medium">Water Bottle or Flask</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-pink-400/20 p-3 rounded-xl text-pink-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path></svg></div>
+                    <span class="font-medium">Toiletries</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-green-400/20 p-3 rounded-xl text-green-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg></div>
+                    <span class="font-medium">Mosquito Repellent</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-red-400/20 p-3 rounded-xl text-red-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg></div>
+                    <span class="font-medium">Personal Medication</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-indigo-400/20 p-3 rounded-xl text-indigo-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path></svg></div>
+                    <span class="font-medium">ID Proof</span>
+                </div>
+                 <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-gray-400/20 p-3 rounded-xl text-gray-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg></div>
+                    <span class="font-medium">Backpack</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal opacity-70">
+                    <div class="bg-white/10 p-3 rounded-xl text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg></div>
+                    <span class="font-medium">Notebook/Music Stand (Optional)</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal opacity-70">
+                    <div class="bg-orange-400/20 p-3 rounded-xl text-orange-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path></svg></div>
+                    <span class="font-medium">Light Snacks (Optional)</span>
+                </div>
+                 <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-teal-400/20 p-3 rounded-xl text-teal-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg></div>
+                    <span class="font-medium">Slippers / Sandals</span>
+                </div>
+                <div class="glass p-4 rounded-2xl flex items-center gap-4 reveal">
+                    <div class="bg-sky-400/20 p-3 rounded-xl text-sky-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg></div>
+                    <span class="font-medium">Umbrella, Cap, or Shades</span>
+                </div>
+            </div>
+
+            <!-- Important Note Card -->
+            <div class="glass border-l-4 border-l-red-500 p-6 rounded-2xl max-w-3xl mx-auto flex gap-4 items-start reveal">
+                <svg class="w-8 h-8 text-red-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <div>
+                    <h4 class="text-xl font-bold mb-1 text-red-400">Important Note</h4>
+                    <p class="text-gray-300 text-sm md:text-base">Please avoid bringing valuables like jewelry, expensive gadgets, or large amounts of cash. The camp organizers are not responsible for lost items.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Categories / Tracks -->
+    <section id="tracks" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Track-Specific Requirements</h2>
+                <p class="text-gray-400">Items specific to your registered masterclass or instrument track.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Keyboard -->
+                <div class="glass glass-card p-8 rounded-3xl reveal transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-accent1 to-purple-800 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Keyboard Students</h3>
+                    <ul class="space-y-3 text-gray-300 text-sm">
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-1.5 flex-shrink-0"></div> Personal Keyboard</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-1.5 flex-shrink-0"></div> Power Adapter</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-1.5 flex-shrink-0"></div> Sustain Pedal</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-1.5 flex-shrink-0"></div> <span>Extension Power Box <a href="https://www.amazon.in/GM-Modular-3041-Trio-Flex-meter/dp/B00IP6C1AI/ref=sr_1_9_in_f3_0o_at_mod_primary_alm?sbo=m6DjfpMzMLDmL8pSMKX8hw%3D%3D&sr=8-9" target="_blank" class="text-brand-accent1 hover:text-white underline ml-1">(Purchase Link)</a></span></li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-1.5 flex-shrink-0"></div> Headphones / Earphones</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-1.5 flex-shrink-0"></div> <span>Earphone Converter Pin <a href="https://www.amazon.in/FEDUS-6-35mm-Headphone-Adapter-Converter/dp/B07PY2CK1L/ref=sr_1_3?nsdOptOutParam=true&sr=8-3" target="_blank" class="text-brand-accent1 hover:text-white underline ml-1">(Purchase Link)</a></span></li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> Keyboard Stand (Optional)</li>
+                    </ul>
+                </div>
+
+                <!-- Guitar -->
+                <div class="glass glass-card p-8 rounded-3xl reveal transition-all duration-300 group" style="animation-delay: 0.1s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-accent2 to-blue-800 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Guitar Students</h3>
+                    <ul class="space-y-3 text-gray-300 text-sm">
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent2 mt-1.5 flex-shrink-0"></div> Acoustic/Electric Guitar</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent2 mt-1.5 flex-shrink-0"></div> Extra set of Strings</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent2 mt-1.5 flex-shrink-0"></div> Guitar Picks & Strap</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent2 mt-1.5 flex-shrink-0"></div> Instrument Cables</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> Capo (Optional)</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> Pedalboard/Processor (Optional)</li>
+                    </ul>
+                </div>
+
+                <!-- Drum -->
+                <div class="glass glass-card p-8 rounded-3xl reveal transition-all duration-300 group" style="animation-delay: 0.2s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-accent3 to-teal-800 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-teal-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Drum Students</h3>
+                    <ul class="space-y-3 text-gray-300 text-sm">
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent3 mt-1.5 flex-shrink-0"></div> Drumsticks (Bring extra pairs)</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-accent3 mt-1.5 flex-shrink-0"></div> Electric Drum Kit or Octapad - If possible</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> Practice Pad (Optional)</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> Personal In-Ears (Optional)</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> Metronome App on Phone</li>
+                    </ul>
+                </div>
+
+                <!-- Vocal -->
+                <div class="glass glass-card p-8 rounded-3xl reveal transition-all duration-300 group" style="animation-delay: 0.3s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-pink-500 to-rose-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-pink-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Vocal Students</h3>
+                    <ul class="space-y-3 text-gray-300 text-sm">
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-pink-500 mt-1.5 flex-shrink-0"></div> Voice recorder / Voice Memos app</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-pink-500 mt-1.5 flex-shrink-0"></div> Ample water / Throat lozenges</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-pink-500 mt-1.5 flex-shrink-0"></div> Lyric / Notes binder</li>
+                    </ul>
+                </div>
+
+                <!-- Media -->
+                <div class="glass glass-card p-8 rounded-3xl reveal transition-all duration-300 group" style="animation-delay: 0.4s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Media Students</h3>
+                    <ul class="space-y-3 text-gray-300 text-sm">
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0"></div> <span>Laptop (preferred) or tablet capable of presentation software, A/V editing, file storage, and note-taking</span></li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 flex-shrink-0"></div> Laptop charger / power adapter</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 flex-shrink-0"></div> Headphones (closed-back preferred for audio work)</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> Extension cord / power strip (Recommended)</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> USB flash drive - 32GB+ (Recommended)</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> External mouse (Recommended)</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> SD card reader (Recommended)</li>
+                        <li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div> Smartphone with camera (Recommended)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers" class="py-24 bg-black/40 relative z-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-block mb-4 px-4 py-1 rounded-full glass border border-white/10 text-sm font-medium text-brand-accent1 uppercase tracking-wider">
+                    Our Instructors
+                </div>
+                <h2 class="text-4xl font-bold mb-4">Our Teachers</h2>
+                <p class="text-gray-400">Meet the experienced worship leaders and musicians guiding you this camp.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Teacher 1 -->
+                <div class="glass glass-card p-6 rounded-3xl flex items-center gap-5 reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-accent1 to-purple-800 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-purple-500/20">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-brand-accent1 uppercase tracking-wider mb-1 block">Guitar / Keys</span>
+                        <h5 class="text-lg font-bold text-white leading-tight mb-1">Bro. Allan Benny</h5>
+                        <a href="tel:+919060484843" class="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +91 90604 84843</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 2 -->
+                <div class="glass glass-card p-6 rounded-3xl flex items-center gap-5 reveal" style="animation-delay: 0.1s;">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-accent1 to-purple-800 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-purple-500/20">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-brand-accent1 uppercase tracking-wider mb-1 block">Keys</span>
+                        <h5 class="text-lg font-bold text-white leading-tight mb-1">Ps. Robin Moses</h5>
+                        <a href="tel:+917760268907" class="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +91 77602 68907</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 3 -->
+                <div class="glass glass-card p-6 rounded-3xl flex items-center gap-5 reveal" style="animation-delay: 0.2s;">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-accent2 to-blue-800 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-blue-500/20">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-brand-accent2 uppercase tracking-wider mb-1 block">Guitar / Keys</span>
+                        <h5 class="text-lg font-bold text-white leading-tight mb-1">Bro. Sarvanan</h5>
+                        <a href="tel:+919916508490" class="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +91 99165 08490</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 4 -->
+                <div class="glass glass-card p-6 rounded-3xl flex items-center gap-5 reveal" style="animation-delay: 0.3s;">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-700 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-orange-500/20">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-amber-500 uppercase tracking-wider mb-1 block">Media</span>
+                        <h5 class="text-lg font-bold text-white leading-tight mb-1">Ps. Jason Immanual</h5>
+                        <a href="tel:+919972464983" class="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +91 99724 64983</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 5 -->
+                <div class="glass glass-card p-6 rounded-3xl flex items-center gap-5 reveal" style="animation-delay: 0.4s;">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-700 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-pink-500/20">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-pink-400 uppercase tracking-wider mb-1 block">Vocals</span>
+                        <h5 class="text-lg font-bold text-white leading-tight mb-1">Sis. Aruna Prasad</h5>
+                        <a href="tel:+917483184141" class="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +91 7483 184 141</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 6 -->
+                <div class="glass glass-card p-6 rounded-3xl flex items-center gap-5 reveal" style="animation-delay: 0.5s;">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-accent3 to-teal-800 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-teal-500/20">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-brand-accent3 uppercase tracking-wider mb-1 block">Drums</span>
+                        <h5 class="text-lg font-bold text-white leading-tight mb-1">Bro. Emmanual</h5>
+                        <a href="tel:+919019974910" class="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +91 90199 74910</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue" class="py-24 bg-black/80 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2 reveal">
+                    <div class="inline-block mb-4 px-4 py-1 rounded-full glass border border-white/10 text-sm font-medium text-brand-accent2 uppercase tracking-wider">
+                        Location
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Where We Gather</h2>
+                    <p class="text-xl text-gray-400 mb-8 font-light">
+                        Join us at our dedicated camp facility, designed to provide a distraction-free environment for worship and learning.
+                    </p>
+                    
+                    <div class="glass p-6 rounded-2xl border-l-4 border-l-brand-accent2 flex gap-4">
+                        <svg class="w-8 h-8 text-brand-accent2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Camp Venue</h4>
+                            <p class="text-gray-300">HJXH+5H, Ponnal,<br>Telangana 500078</p>
+                            <a href="https://maps.google.com/?q=HJXH+5H, Ponnal, Telangana 500078" target="_blank" class="inline-block mt-4 text-brand-accent2 hover:text-white transition-colors text-sm font-semibold uppercase tracking-wider">
+                                Open in Google Maps &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 w-full reveal">
+                    <!-- Stylized Map Placeholder -->
+                    <div class="relative w-full aspect-video rounded-3xl overflow-hidden glass border border-white/10 group">
+                        <div class="absolute inset-0 bg-gray-900 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50 transition-transform duration-700 group-hover:scale-105"></div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-brand-accent2/20 to-transparent"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-brand-accent2 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.5)] animate-bounce">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Need Help?</h2>
+                <p class="text-gray-400">Reach out to our leadership team for any clarifications.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                <a href="tel:9032178891" class="glass p-5 rounded-2xl flex items-start gap-4 hover:bg-white/5 transition-colors reveal">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white flex-shrink-0 mt-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-white leading-tight mb-1">Ps. Satish Divakaran</h5>
+                        <p class="text-brand-accent1 font-bold tracking-wide text-sm mb-1.5">9032178891</p>
+                        <p class="text-gray-400 text-xs leading-relaxed">For help in reaching the campus from Hyd city</p>
+                    </div>
+                </a>
+
+                <a href="tel:9014362030" class="glass p-5 rounded-2xl flex items-start gap-4 hover:bg-white/5 transition-colors reveal" style="animation-delay: 0.1s;">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white flex-shrink-0 mt-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-white leading-tight mb-1">Bro. Sam Yanam</h5>
+                        <p class="text-brand-accent2 font-bold tracking-wide text-sm mb-1.5">9014362030</p>
+                        <p class="text-gray-400 text-xs leading-relaxed">For help if you are reaching campus on Sunday</p>
+                    </div>
+                </a>
+
+                <a href="tel:9032256680" class="glass p-5 rounded-2xl flex items-start gap-4 hover:bg-white/5 transition-colors reveal" style="animation-delay: 0.2s;">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white flex-shrink-0 mt-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-white leading-tight mb-1">Ps. Timothy Srinivas</h5>
+                        <p class="text-brand-accent3 font-bold tracking-wide text-sm mb-1.5">9032256680</p>
+                        <p class="text-gray-400 text-xs leading-relaxed">All AP delegates</p>
+                    </div>
+                </a>
+
+                <a href="tel:9849269326" class="glass p-5 rounded-2xl flex items-start gap-4 hover:bg-white/5 transition-colors reveal md:col-start-1 lg:col-start-2">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white flex-shrink-0 mt-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-white leading-tight mb-1">Ps. Milton Raj</h5>
+                        <p class="text-brand-accent1 font-bold tracking-wide text-sm mb-1.5">9849269326</p>
+                        <p class="text-gray-400 text-xs leading-relaxed">For help to reach NLAG Church, Kompally and transport to the campus on Monday</p>
+                    </div>
+                </a>
+
+                <a href="tel:9844105095" class="glass p-5 rounded-2xl flex items-start gap-4 hover:bg-white/5 transition-colors reveal md:col-start-2 lg:col-start-3">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white flex-shrink-0 mt-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-white leading-tight mb-1">Ps. Sunny Prasad</h5>
+                        <p class="text-brand-accent2 font-bold tracking-wide text-sm mb-1.5">9844105095</p>
+                        <p class="text-gray-400 text-xs leading-relaxed">All outstation delegates</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing Section & Footer -->
+    <footer class="relative z-10 border-t border-white/10 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-accent1/10 pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 py-24 text-center reveal">
+            <h3 class="text-3xl md:text-4xl font-bold mb-6">Prepare Your Hearts</h3>
+            <p class="text-lg md:text-xl text-gray-300 font-light mb-10 leading-relaxed">
+                We are praying for you as you prepare for this weekend. Let’s gather with expectant hearts, united in spirit, and ready to encounter God. He is going to do something incredible. See you soon!
+            </p>
+            <a href="#home" onclick="window.scrollTo(0,0);" class="inline-flex items-center justify-center w-14 h-14 rounded-full glass border border-white/20 text-white hover:bg-white hover:text-black transition-all">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+            </a>
+        </div>
+        <div class="py-6 text-center border-t border-white/5 text-gray-500 text-sm">
+            &copy; 2026 Enrich Worship Camp. Built for His Glory.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-brand-dark/80', 'border-b', 'border-white/10', 'shadow-lg');
+                navbar.classList.remove('border-b-0');
+            } else {
+                navbar.classList.remove('bg-brand-dark/80', 'border-b', 'border-white/10', 'shadow-lg');
+                navbar.classList.add('border-b-0');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
