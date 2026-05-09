@@ -105,6 +105,27 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Print Styles for the Policy Modal */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printablePolicy, #printablePolicy * {
+                visibility: visible;
+                color: black !important;
+                background: white !important;
+            }
+            #printablePolicy {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="antialiased bg-grid relative">
@@ -410,10 +431,10 @@
                                                 <span class="text-white font-bold">Mobile Usage</span> - carefully go through the mobile usage instructions shared below 📱.
                                             </p>
                                         </div>
-                                        <a href="Mobile Phone Usage Policy & Parental Consent Form.docx" target="_blank" class="inline-flex items-center gap-2 bg-[#2B579A] hover:bg-[#1e3e70] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all shadow-lg flex-shrink-0 whitespace-nowrap">
+                                        <button onclick="toggleModal('policyModal')" class="inline-flex items-center gap-2 bg-[#2B579A] hover:bg-[#1e3e70] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all shadow-lg flex-shrink-0 whitespace-nowrap">
                                             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1.8 15.3l-1.5-4.8c-.1-.3-.2-.5-.3-.7h-.1c-.1.2-.2.5-.3.8l-1.5 4.7h-1.6l2.3-6.5h1.9l1.2 4c.1.4.2.7.3 1h.1c.1-.3.2-.6.3-1l1.2-4h1.8l2.3 6.5h-1.7l-1.5-4.7c-.1-.3-.2-.5-.3-.8h-.1c-.1.3-.2.6-.3.8l-1.5 4.8h-1.7zM13 9V3.5L18.5 9H13z"/></svg>
                                             View Policy Form
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
 
@@ -684,7 +705,7 @@
     </section>
 
     <!-- Closing Section & Footer -->
-    <footer class="relative z-10 border-t border-white/10 overflow-hidden">
+    <footer class="relative z-10 border-t border-white/10 overflow-hidden no-print">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-accent1/10 pointer-events-none"></div>
         <div class="max-w-4xl mx-auto px-4 py-24 text-center reveal">
             <h3 class="text-3xl md:text-4xl font-bold mb-6">Prepare Your Hearts</h3>
@@ -699,6 +720,126 @@
             &copy; 2026 Enrich Worship Camp. Built for His Glory.
         </div>
     </footer>
+
+    <!-- Policy Modal -->
+    <div id="policyModal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-sm overflow-y-auto no-print transition-opacity duration-300">
+        <div class="min-h-screen px-4 text-center flex items-center justify-center">
+            <!-- Modal Background Click Area -->
+            <div class="absolute inset-0" onclick="toggleModal('policyModal')"></div>
+            
+            <!-- Modal Content -->
+            <div class="inline-block w-full max-w-3xl my-8 text-left align-middle transition-all transform glass bg-[#0a0a0c] border border-white/10 rounded-3xl shadow-2xl relative z-10">
+                <div class="p-8 md:p-10 relative">
+                    <!-- Close Button -->
+                    <button onclick="toggleModal('policyModal')" class="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors bg-white/5 p-2 rounded-full hover:bg-white/10 no-print">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+
+                    <!-- Printable Content Area -->
+                    <div id="printablePolicy" class="text-gray-300 space-y-6">
+                        
+                        <div class="text-center mb-8 border-b border-white/10 pb-6">
+                            <h3 class="text-2xl md:text-3xl font-black text-white mb-2 tracking-tight">ENRICH WORSHIP CAMP 2026</h3>
+                            <h4 class="text-lg md:text-xl font-bold text-brand-accent2">Mobile Phone Usage Policy & Parental Consent Form</h4>
+                        </div>
+
+                        <p class="text-sm md:text-base leading-relaxed">Dear Delegates and Parents,</p>
+                        
+                        <p class="text-sm md:text-base leading-relaxed">
+                            Greetings in the name of the Lord. The Enrich Workshop Team is pleased to welcome all delegates to <span class="font-bold text-white">Enrich Worship Camp 2026</span>. In order to maintain a focused, disciplined, safe, and spiritually enriching atmosphere, all delegates are required to follow the mobile phone policy stated below.
+                        </p>
+
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 my-6">
+                            <h5 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-brand-accent1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                Mobile Phone Usage Policy
+                            </h5>
+                            <ul class="space-y-4 text-sm md:text-base">
+                                <li class="flex items-start gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-2 flex-shrink-0"></div>
+                                    <p>Mobile phones may be used only during the designated break time: <span class="font-bold text-white">5:00 PM to 6:00 PM</span> (subject to change based on the workshop schedule).</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-2 flex-shrink-0"></div>
+                                    <p>Outside the permitted time, all mobile phones must be switched off and submitted to the designated coordinator or concerned person.</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-2 flex-shrink-0"></div>
+                                    <p>Delegates are expected to use mobile phones responsibly and only in a manner consistent with the values and discipline of the workshop.</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-2 flex-shrink-0"></div>
+                                    <p>In case of an emergency or genuine necessity, exceptions may be permitted at the discretion of the workshop leadership.</p>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-brand-accent1 mt-2 flex-shrink-0"></div>
+                                    <p>Designated Pastors and Volunteers will be available at all times to assist delegates who need to contact their parents or guardians outside the permitted phone usage period.</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h5 class="text-lg font-bold text-white">Parental Consent for Delegates Under 18 Years of Age</h5>
+                            <p class="text-sm md:text-base leading-relaxed">
+                                For all delegates below the age of 18, parental or guardian consent is required to confirm understanding of and agreement with the mobile phone policy.
+                            </p>
+                            <div class="bg-brand-accent2/10 border-l-4 border-brand-accent2 p-5 rounded-r-xl italic text-sm md:text-base mt-4 text-gray-200">
+                                "I, the undersigned, as the parent/legal guardian of the delegate named below, have read and understood the Mobile Phone Usage Policy of Enrich Worship Camp 2026. I hereby give my consent for my child to participate in the workshop under this policy and agree to cooperate with the guidelines established by the Enrich Workshop Team."
+                            </div>
+                        </div>
+
+                        <!-- Form Fields for Print -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 pt-6 pb-2">
+                            <div class="border-b border-gray-600 pb-1 flex justify-between items-end">
+                                <span class="text-sm text-gray-400">Name of Delegate:</span>
+                                <div class="flex-1 ml-4 border-b border-gray-500/50"></div>
+                            </div>
+                            <div class="border-b border-gray-600 pb-1 flex justify-between items-end">
+                                <span class="text-sm text-gray-400">Age:</span>
+                                <div class="flex-1 ml-4 border-b border-gray-500/50"></div>
+                            </div>
+                            <div class="border-b border-gray-600 pb-1 flex justify-between items-end">
+                                <span class="text-sm text-gray-400">Parent/Guardian Name:</span>
+                                <div class="flex-1 ml-4 border-b border-gray-500/50"></div>
+                            </div>
+                            <div class="border-b border-gray-600 pb-1 flex justify-between items-end">
+                                <span class="text-sm text-gray-400">Relationship to Delegate:</span>
+                                <div class="flex-1 ml-4 border-b border-gray-500/50"></div>
+                            </div>
+                            <div class="border-b border-gray-600 pb-1 flex justify-between items-end md:col-span-2">
+                                <span class="text-sm text-gray-400">Mobile Number:</span>
+                                <div class="flex-1 ml-4 border-b border-gray-500/50"></div>
+                            </div>
+                            <div class="border-b border-gray-600 pb-1 flex justify-between items-end pt-8">
+                                <span class="text-sm text-gray-400">Signature of Parent/Guardian:</span>
+                                <div class="flex-1 ml-4 border-b border-gray-500/50"></div>
+                            </div>
+                            <div class="border-b border-gray-600 pb-1 flex justify-between items-end pt-8">
+                                <span class="text-sm text-gray-400">Date:</span>
+                                <div class="flex-1 ml-4 border-b border-gray-500/50"></div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">
+                            <div class="text-sm md:text-base text-center sm:text-left">
+                                <p class="mb-4">Thank you for your understanding, cooperation, and support. The prayer is that this workshop will be a meaningful and life-transforming experience for every delegate.</p>
+                                <p class="text-brand-accent1 italic">Prayers and Blessings,</p>
+                                <p class="font-bold text-white mt-1">Dr. Sunny Prasad</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-widest">Director, Enrich Workshop Team</p>
+                            </div>
+                            
+                            <!-- Print Button -->
+                            <button onclick="window.print()" class="no-print bg-white text-black font-bold py-3 px-6 rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.2)] flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                                Print Document
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script>
@@ -733,6 +874,18 @@
         document.querySelectorAll('.reveal').forEach((element) => {
             observer.observe(element);
         });
+
+        // Modal Logic
+        function toggleModal(modalID) {
+            const modal = document.getElementById(modalID);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+            } else {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
     </script>
 </body>
 </html>
